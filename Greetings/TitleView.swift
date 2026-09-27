@@ -1,18 +1,62 @@
 import SwiftUI
 
 struct TitleView: View {
+    let lineWidth = 15.0
+    let diameter = 70.0
+    
+    @State private var isRotated: Bool = false
+    
+    var angle: Angle {
+        isRotated ? .zero : Angle(degrees: 360.0)
+    }
+    
+    var angularGradient: AngularGradient {
+        AngularGradient(
+            gradient: Gradient(
+                colors: [
+                    .pink,
+                    .purple,
+                    .blue,
+                    .orange,
+                    .yellow,
+                    .pink
+                ]
+            ),
+            center: .center,
+            angle: .zero
+        )
+    }
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 0.0) {
-            Text("Greetings")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-            Text("Exploring iOS Programming")
-                .font(.headline)
-                .fontWeight(.thin)
+        HStack {
+            VStack(alignment: .leading, spacing: 0.0) {
+                Text("Greetings")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                Text("Exploring iOS Programming")
+                    .font(.headline)
+                    .fontWeight(.thin)
+            }
+            
+            Spacer()
+            
+            Circle()
+                .strokeBorder(angularGradient, lineWidth: lineWidth)
+                .rotationEffect(angle)
+                .frame(width: diameter, height: diameter)
+                .onTapGesture {
+                    withAnimation {
+                        isRotated.toggle()
+                    }
+                }
         }
     }
 }
 
 #Preview {
-    TitleView()
+    VStack {
+        TitleView()
+        Spacer()
+    }
+    .padding()
 }

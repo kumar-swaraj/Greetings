@@ -17,8 +17,20 @@ struct TextView: View {
         Color(red: 1, green: 215/255, blue: 0),
     ]
     
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    
+    var isIpad: Bool {
+        horizontalSizeClass == .regular && verticalSizeClass == .regular
+    }
+    
+    var font: Font {
+        isIpad ? .largeTitle : .body
+    }
+    
     var body: some View {
         Text(text)
+            .font(font)
             .fontWeight(.semibold)
             .foregroundStyle(.white)
             .padding()

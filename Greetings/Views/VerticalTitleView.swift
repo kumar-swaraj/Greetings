@@ -1,21 +1,25 @@
+//
+//  VerticalTitleView.swift
+//  Greetings
+//
+//  Created by Kumar Swaraj on 29/09/26.
+//
+
 import SwiftUI
 
-struct TitleView: View {
+struct VerticalTitleView: View {
     @State private var subtitle: LocalizedStringKey = "Exploring iOS Programming"
     
     var body: some View {
-        HStack {
+        VStack(alignment: .leading) {
             GreetingsTextView(subtitle: $subtitle)
-            Spacer()
             RotatableCircleView()
+            Spacer()
         }
+        .padding(.vertical)
     }
 }
 
 #Preview {
-    VStack {
-        TitleView()
-        Spacer()
-    }
-    .padding()
+    VerticalTitleView()
 }

@@ -94,6 +94,7 @@
 				hi,
 				es,
 				"zh-Hans",
+				ar,
 			);
 			mainGroup = 4A4BBA523068D08700CD4A1B;
 			minimizedProjectReferenceProxies = 1;
